@@ -7,7 +7,9 @@ $(function(){
   // function defines method in jqery
   // multiline code can be executed inside it
  
- $('#color').simplecolorpicker(); 
+ $('#color').simplecolorpicker();
+ $('#datetimepicker').datetimepicker();
+ $('#datetimepicker').setLocale('en'); 
 
 });  
 </script>
@@ -23,7 +25,7 @@ $(function(){
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Date and Time</label>
-    <input name="user_date" type="text" class="form-control" value="<%=@user_date%>" placeholder="Enter Date & Time">
+    <input id="datetimepicker" name="user_date" type="text" class="form-control" value="<%=@user_date%>" placeholder="Enter Date & Time">
   </div>
 
   <div class="form-group">
