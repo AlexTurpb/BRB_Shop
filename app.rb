@@ -4,9 +4,13 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def get_db
+	return SQLite3::Database.new 'barbershop.db'
+end
+
 configure do
-	@db = SQLite3::Database.new 'barbershop.db'
-	@db.execute 'CREATE TABLE IF NOT EXISTS
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS
 		"Users"
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -51,13 +55,22 @@ post '/visit' do
 
 	if @error != ""
 		return erb :visit
-	else		
+	else
+		db = get_db		
+		db.execute 'insert into
+			Users
+			(
+				username,
+				phone,
+				datestamp,
+				barber,
+				color
+			)
+			values
+			( ?, ?, ?, ?, ?)', [@username, @user_phone, @user_date, @prefered_barber, @color] 
+
 		@info = "Success! <b><i>#{@username}.</b></i> We've got your Phone: <b><i>#{@user_phone}.</b></i> <b><i>#{@prefered_barber}</b></i> waiting for you at: <b><i>#{@user_date}.</b></i> <b><i>#{@color}</b></i> paint is available."
 		return erb :visit
-		
-		users_log = File.open './public/users.txt', 'a'
-		users_log.write "User: #{@username} Phone: #{@user_phone} Date: #{@user_date} Barber: #{@prefered_barber} Paint: #{@color}\n"
-		users_log.close
 	end
 end
 
