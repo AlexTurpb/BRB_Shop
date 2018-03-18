@@ -29,9 +29,9 @@ $(function(){
   <div class="form-group">
   	<p> Select barber </p>
 	<select name="prefered_barber" class="form-control">
-	  <option>Walter White</option>
-	  <option>Jessie Pinkman</option>
-	  <option>Gus Fring</option>
+	  <option <%= @prefered_barber == 'Walter White' ? 'selected' : '' %>>Walter White</option>
+	  <option <%= @prefered_barber == 'Jessie Pinkman' ? 'selected' : '' %>>Jessie Pinkman</option>
+	  <option <%= @prefered_barber == 'Gus Fring' ? 'selected' : '' %>>Gus Fring</option>
 	</select>
   </div>
 
