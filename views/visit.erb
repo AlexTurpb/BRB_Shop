@@ -1,0 +1,57 @@
+<h2>Check in</h2>
+<p>On this page you can sign in to our Barber Shop</p>
+
+<script type="text/javascript">
+$(function(){
+
+  // function defines method in jqery
+  // multiline code can be executed inside it
+ 
+ $('#color').simplecolorpicker(); 
+
+});  
+</script>
+
+<form action="/visit" method="POST">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Your name</label>
+    <input name="username" type="text" class="form-control" value="<%=@username%>" placeholder="Enter your name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Your phone</label>
+    <input name="user_phone" type="text" class="form-control" value="<%=@user_phone%>" placeholder="Enter your phone">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Date and Time</label>
+    <input name="user_date" type="text" class="form-control" value="<%=@user_date%>" placeholder="Enter Date & Time">
+  </div>
+
+  <div class="form-group">
+  	<p> Select barber </p>
+	<select name="prefered_barber" class="form-control">
+	  <option>Walter White</option>
+	  <option>Jessie Pinkman</option>
+	  <option>Gus Fring</option>
+	</select>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Paint color:</label>
+      <select id="color" name="color">
+        <option value="#7bd148">Green</option>
+        <option value="#5484ed">Bold blue</option>
+        <option value="#a4bdfc">Blue</option>
+        <option value="#46d6db">Turquoise</option>
+        <option value="#7ae7bf">Light green</option>
+        <option value="#51b749">Bold green</option>
+        <option value="#fbd75b">Yellow</option>
+        <option value="#ffb878">Orange</option>
+        <option value="#ff887c">Red</option>
+        <option value="#dc2127">Bold red</option>
+        <option value="#dbadff">Purple</option>
+        <option value="#e1e1e1">Gray</option>
+      </select>
+  </div>
+
+  <input type="submit" value = "Check in" class="btn btn-primary"></input> 
+</form>
