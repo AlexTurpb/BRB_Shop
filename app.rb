@@ -77,9 +77,7 @@ post '/visit' do
 end
 
 get '/showusers' do
-	get_db.execute 'select * from Users' do |row|
-		@showusers = "#{row['username']} cheked #{row['datestamp']}"
-	end
-
+	@show_loosers = get_db.execute 'select * from Users'
 	erb :showusers
 end
+
