@@ -77,7 +77,7 @@ post '/visit' do
 end
 
 get '/showusers' do
-	@show_loosers = get_db.execute 'select * from Users'
+	@show_loosers = get_db.execute 'select * from Users order by Id asc';
 	erb :showusers
 end
 
