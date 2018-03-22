@@ -29,9 +29,9 @@ configure do
 	  		"id" INTEGER PRIMARY KEY AUTOINCREMENT,
 	  		"barber_name" TEXT NOT NULL UNIQUE
 	  	)'
-	#get_db.execute 'insert into Barbers(barber_name) values ('Walter White')'
-	#get_db.execute 'insert into Barbers(barber_name) values ('Jessie Pinkman')'
-	#get_db.execute 'insert into Barbers(barber_name) values ('Gus Fring')'
+	get_db.execute "insert into Barbers(barber_name) values( ?)", 'Walter White'
+	get_db.execute "insert into Barbers(barber_name) values( ?)", 'Jessie Pinkman'
+	get_db.execute "insert into Barbers(barber_name) values( ?)", 'Gus Fring'
 	end
 end
 
