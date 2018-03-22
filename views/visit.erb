@@ -9,7 +9,7 @@ $(function(){
  
  $('#color').simplecolorpicker();
  $('#datetimepicker').datetimepicker();
- $('#datetimepicker').setLocale('en'); 
+ // $('#datetimepicker').setLocale('en'); 
 
 });  
 </script>
@@ -31,9 +31,9 @@ $(function(){
   <div class="form-group">
   	<p> Select barber </p>
 	<select name="prefered_barber" class="form-control">
-	  <option <%= @prefered_barber == 'Walter White' ? 'selected' : '' %>>Walter White</option>
-	  <option <%= @prefered_barber == 'Jessie Pinkman' ? 'selected' : '' %>>Jessie Pinkman</option>
-	  <option <%= @prefered_barber == 'Gus Fring' ? 'selected' : '' %>>Gus Fring</option>
+    <%@show_barbers.each do |row|%>
+	  <option <%= @prefered_barber == row['barber_name'] ? 'selected' : '' %>><%="#{row['barber_name']}"%></option>
+    <%end%>
 	</select>
   </div>
 

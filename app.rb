@@ -27,11 +27,11 @@ configure do
 	  	"Barbers"
 	  	(
 	  		"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-	  		"barber_name" TEXT NOT NULL UNIQUE
+	  		"barber_name" TEXT UNIQUE
 	  	)'
-	get_db.execute "insert into Barbers(barber_name) values( ?)", 'Walter White'
-	get_db.execute "insert into Barbers(barber_name) values( ?)", 'Jessie Pinkman'
-	get_db.execute "insert into Barbers(barber_name) values( ?)", 'Gus Fring'
+	get_db.execute "insert or ignore into Barbers(barber_name) values( ?)", 'Walter White'
+	get_db.execute "insert or ignore into Barbers(barber_name) values( ?)", 'Jessie Pinkman'
+	get_db.execute "insert or ignore into Barbers(barber_name) values( ?)", 'Gus Fring'
 	end
 end
 
@@ -44,6 +44,7 @@ get '/about' do
 end
 
 get '/visit' do
+	@show_barbers = get_db.execute 'select * from Barbers'
 	erb :visit
 end
 
@@ -52,6 +53,7 @@ get '/contacts' do
 end
 
 post '/visit' do
+	@show_barbers = get_db.execute 'select * from Barbers'
 	@username = params[:username].capitalize
 	@user_phone = params[:user_phone]
 	@user_date = params[:user_date]
