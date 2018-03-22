@@ -11,8 +11,9 @@ def get_db
 end
 
 configure do
-	db = get_db
-	db.execute 'CREATE TABLE IF NOT EXISTS
+	#db = get_db
+	begin
+	get_db.execute 'CREATE TABLE IF NOT EXISTS
 		"Users"
 		(
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,6 +23,16 @@ configure do
 			"barber" TEXT,
 			"color" TEXT
 		)'
+	get_db.execute 'CREATE TABLE IF NOT EXISTS
+	  	"Barbers"
+	  	(
+	  		"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	  		"barber_name" TEXT NOT NULL UNIQUE
+	  	)'
+	#get_db.execute 'insert into Barbers(barber_name) values ('Walter White')'
+	#get_db.execute 'insert into Barbers(barber_name) values ('Jessie Pinkman')'
+	#get_db.execute 'insert into Barbers(barber_name) values ('Gus Fring')'
+	end
 end
 
 get '/' do
