@@ -50,6 +50,10 @@ configure do
 	end
 end
 
+before do
+	@show_barbers = get_db.execute 'select * from Barbers'
+end
+
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
 end
@@ -59,7 +63,6 @@ get '/about' do
 end
 
 get '/visit' do
-	@show_barbers = get_db.execute 'select * from Barbers'
 	erb :visit
 end
 
@@ -68,7 +71,6 @@ get '/contacts' do
 end
 
 post '/visit' do
-	@show_barbers = get_db.execute 'select * from Barbers'
 	@username = params[:username].capitalize
 	@user_phone = params[:user_phone]
 	@user_date = params[:user_date]
